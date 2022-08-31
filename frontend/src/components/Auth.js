@@ -3,15 +3,19 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from "axios"
+import {useDispatch} from "react-redux"
+import { authActions } from '../store';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -29,6 +33,9 @@ function Copyright(props) {
 const theme = createTheme();
 
 const Auth = () =>{
+
+  const navigate= useNavigate()
+  const dispatch= useDispatch()
 const [input, setInput] = React.useState({
   name:"",email:"",password:""
 })
@@ -41,10 +48,28 @@ const [input, setInput] = React.useState({
     }))
   }
 
+
+  const sendRequest=async(type="login")=>{
+    
+   const res= await axios.post(`http://localhost:5000/api/user/${type}`,{
+      name:input.name,
+      email:input.email,
+      password:input.password
+    }).catch(err=>console.log(err))
+
+    const data= await res.data;
+    return data;
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(input)
-  
+    // console.log(input)
+    if(issignup){
+      sendRequest("signup").then(()=>dispatch(authActions.login())).then(data=> navigate("/blogs"))
+    }else{
+      sendRequest().then(()=>dispatch(authActions.login())).then(data=> navigate("/blogs"))
+    }
+      
   };
 
   return (
