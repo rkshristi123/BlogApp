@@ -164,7 +164,7 @@ const [input, setInput] = React.useState({
                 sx={{ mt: 3, mb: 2 }}
                onClick={()=>setIssignup(!issignup)}
               >
-            {issignup ? "Change to Login" : "Change to Signup"}
+            {issignup ? "Change into Login" : "Change into Signup"}
               </Button>
            
               <Copyright sx={{ mt: 5 }} />

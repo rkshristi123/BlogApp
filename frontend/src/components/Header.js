@@ -14,13 +14,14 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {Link} from "react-router-dom"
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from '../store';
 
 
 
 
 const Header = () => {
-
+const dispatch = useDispatch()
   const isLoggedIn=useSelector((state)=>state.isLoggedIn)
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -178,7 +179,7 @@ const Header = () => {
                 <MenuItem  onClick={handleCloseUserMenu}   sx={{
                 display: "block",
               }}>
-                   <Link style={{textDecoration: 'none',color:"		#2F4F4F" ,fontWeight:"bold"}} to="/auth">Logout</Link>
+                   <Link onClick={()=>dispatch(authActions.logout())} style={{textDecoration: 'none',color:"		#2F4F4F" ,fontWeight:"bold"}} to="/auth">Logout</Link>
                 
                 </MenuItem>
                   }
