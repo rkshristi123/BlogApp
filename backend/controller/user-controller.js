@@ -55,7 +55,7 @@ existinguser=await User.findOne({email})
     if(!ispasswordcorrect){
         return res.status(400).json({message:"Incorrect password"})  
     }
-    return res.status(200).json({message:"Login sucessful"})  
+    return res.status(200).json({message:"Login sucessful",user:existinguser})  
 }
 
 module.exports= {getAllUser,signup,login}

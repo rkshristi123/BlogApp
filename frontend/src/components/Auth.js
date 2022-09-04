@@ -65,9 +65,13 @@ const [input, setInput] = React.useState({
     event.preventDefault();
     // console.log(input)
     if(issignup){
-      sendRequest("signup").then(()=>dispatch(authActions.login())).then(data=> navigate("/blogs"))
+      sendRequest("signup").then((data)=>localStorage.setItem("userId",data.user._id))
+      .then(()=>dispatch(authActions.login()))
+      .then(data=> navigate("/blogs"))
     }else{
-      sendRequest().then(()=>dispatch(authActions.login())).then(data=> navigate("/blogs"))
+      sendRequest().then((data)=>localStorage.setItem("userId",data.user._id))
+      .then(()=>dispatch(authActions.login()))
+      .then(data=> navigate("/blogs"))
     }
       
   };

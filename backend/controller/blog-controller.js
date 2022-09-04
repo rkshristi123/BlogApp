@@ -100,7 +100,7 @@ const updateBlog=async(req,res,next)=>{
     const userId=req.params.id;
     let userBlogs;
     try{
-        userBlogs=await user.findById(userId).populate("blogs")
+        userBlogs=await User.findById(userId).populate("blogs")
     }
     catch(err){
         return console.log(err)
