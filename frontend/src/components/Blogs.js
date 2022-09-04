@@ -23,12 +23,20 @@ useEffect(()=>{
   sendRequest().then(data=>setBlogs(data.blogs))
 },[])
 
-
+console.log("blogs", blogs)
 
   return (
     <div>
+
       {blogs && blogs.map((el,index)=>(
-      <Blog key={index} title={el.title} image={el.image} description={el.description} userName={el.user.name}/>
+      <Blog 
+      id={el._id}
+      isUser={localStorage.getItem("userId")===el.user._id}
+      key={index} 
+      title={el.title} 
+      image={el.image} 
+      description={el.description}
+       userName={el.user.name}/>
       ))}
   
     </div>
