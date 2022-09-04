@@ -18,7 +18,7 @@ const sendRequest=async()=>{
   return (
     <div>
   {blogs && blogs.map((el,index)=>(
-      <Blog key={index} title={el.title} image={el.imageUrl} description={el.description} userName={el.user.name}/>
+      <Blog key={index} title={el.title} image={el.image} description={el.description} userName={el.user.name}/>
       ))}
     </div>
   )

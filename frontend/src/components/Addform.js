@@ -1,12 +1,12 @@
-import * as React from 'react';
+import  React, {useState} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import CreateNewFolderRoundedIcon from '@mui/icons-material/CreateNewFolderRounded';
-
+import axios from "axios"
 import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
+
 import Box from '@mui/material/Box';
 
 import Typography from '@mui/material/Typography';
@@ -29,20 +29,44 @@ function Copyright(props) {
 const theme = createTheme();
 
 const Addform=()=> {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+    const [input,setInput] =useState({
+
+        title:"",
+        description:"",
+        image:""
+      })
+
+      const handleChange=(e)=>{
+        setInput((prevState)=>({
+            ...prevState,
+            [e.target.name] : e.target.value
+          }))
+      }
+      const id =localStorage.getItem("userId")
+
+      const sendRequest=async(type="login")=>{
+     const res= await axios.post(`http://localhost:5000/api/blog/add`,{
+           title:input.title,
+           description:input.description,
+           image:input.image,
+           user:id
+         }).catch(err=>console.log(err))
+     
+         const data= await res.data;
+         return data;
+       }
+
+      const handleSubmit=(e)=>{
+        e.preventDefault()
+        sendRequest().then((data)=>console.log(data))
+     
+      }
 
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <form>
+
         <Box
           sx={{
             marginTop: 8,
@@ -61,6 +85,8 @@ const Addform=()=> {
             <TextField
               margin="normal"
               color="success"
+              value={input.title}
+              onChange={handleChange}
               required
               fullWidth
               id="title"
@@ -71,6 +97,8 @@ const Addform=()=> {
             <TextField
               margin="normal"
               color="success"
+              value={input.description}
+              onChange={handleChange}
               required
               fullWidth
               name="description"
@@ -82,6 +110,8 @@ const Addform=()=> {
              <TextField
               margin="normal"
               color="success"
+              value={input.image}
+              onChange={handleChange}
               required
               fullWidth
               name="image"
@@ -98,12 +128,12 @@ const Addform=()=> {
               sx={{ mt: 3, mb: 2 }}
               color="warning"
             >
-              Sign In
+             Submit
             </Button>
            
           </Box>
         </Box>
-        </form>
+      
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>

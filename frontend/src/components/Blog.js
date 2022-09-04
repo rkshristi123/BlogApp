@@ -21,11 +21,11 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-const Blog=({title,description,imageUrl,userName}) => {
+const Blog=({title,description,image,userName}) => {
  
   return (
-    <div>
-    <Card   sx={{  width: {md:"40%",xs:"100%"},margin:"auto",mt:"10",padding:"2",boxShadow:"5 px 5px 10px #ccc",":hover":{
+    <div style={{marginTop:"30px"}}>
+    <Card   sx={{ width: {md:"40%",xs:"100%"},margin:"auto",mt:"20",padding:"2",boxShadow:"5 px 5px 10px #ccc",":hover":{
      boxShadow:"10px 10px 20px #ccc"
     } }}>
       <CardHeader
@@ -40,8 +40,8 @@ const Blog=({title,description,imageUrl,userName}) => {
       />
       <CardMedia
         component="img"
-        height="194"
-        image={imageUrl}
+        height="250"
+        image={image}
         alt="Paella dish"
       />
       <CardContent>

@@ -38,7 +38,7 @@ const addBlog=async(req,res,next)=>{
        await session.commitTransaction()
 
     }catch(err){
-        return console.log(err)
+   
         return res.status(500).json({message:err})
     }
     return res.status(200).json({blog})
