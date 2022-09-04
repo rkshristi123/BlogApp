@@ -1,8 +1,14 @@
 import React from 'react'
+import Addform from './Addform'
 
 const AddBlog = () => {
   return (
-    <div>AddBlog</div>
+  
+    
+    <div><Addform/></div>
+     
+    
+    
   )
 }
 

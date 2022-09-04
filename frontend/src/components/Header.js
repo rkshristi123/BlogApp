@@ -106,7 +106,7 @@ const dispatch = useDispatch()
               <Link style={{textDecoration: 'none',color:"	#2F4F4F" ,fontWeight:"bold"}} to="/myblogs">My Blogs</Link>
                 </MenuItem>
                 <MenuItem  onClick={handleCloseNavMenu}>
-              <Link style={{textDecoration: 'none',color:"	#2F4F4F" ,fontWeight:"bold"}} to="/addblogs">Add Blogs</Link>
+              <Link style={{textDecoration: 'none',color:"	#2F4F4F" ,fontWeight:"bold"}} to="/addblogs">Add Blog</Link>
                 </MenuItem>
             </Menu>
               }
@@ -136,7 +136,7 @@ const dispatch = useDispatch()
             <Tabs textColor="inherit" value={value} onChange={(e,val)=>setValue(val)}>
           <Tab LinkComponent={Link} to="/blogs" label="All Blogs"/>
           <Tab  LinkComponent={Link} to="/myblogs"  label="My Blogs"/>
-          <Tab  LinkComponent={Link} to="/addblogs"  label="Add Blogs"/>
+          <Tab  LinkComponent={Link} to="/addblogs"  label="Add Blog"/>
         </Tabs>
              
          
